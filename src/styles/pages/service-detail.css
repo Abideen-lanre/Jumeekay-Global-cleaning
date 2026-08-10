@@ -1,0 +1,140 @@
+/* Service Detail Page Styles */
+.service-detail-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3.5rem;
+}
+
+.service-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.service-hero-image {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  max-height: 420px;
+}
+
+.service-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.service-description h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.checklist-container {
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  border: 1px solid var(--color-border);
+}
+
+.checklist-title {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 1.5rem;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--color-navy-dark);
+}
+
+.checklist-item svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+.benefits-box-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.benefit-mini-card {
+  background-color: var(--color-bg-white);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.benefit-mini-card h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-navy-dark);
+}
+
+.audience-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.audience-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--color-bg-white);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  font-weight: 600;
+}
+
+/* Service Page Sticky Sidebar CTA */
+.service-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sidebar-cta-card {
+  background: linear-gradient(135deg, var(--color-navy-dark), var(--color-navy));
+  color: var(--color-text-white);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-xl);
+  position: sticky;
+  top: 100px;
+}
+
+.sidebar-cta-card h3 {
+  color: var(--color-text-white);
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-cta-card p {
+  color: #94A3B8;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .service-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checklist-grid,
+  .benefits-box-grid,
+  .audience-list {
+    grid-template-columns: 1fr;
+  }
+}

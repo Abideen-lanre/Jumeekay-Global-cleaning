@@ -1,0 +1,68 @@
+:root {
+  /* Brand Colors */
+  --color-navy-dark: #0F172A;
+  --color-navy: #1E293B;
+  --color-navy-light: #334155;
+  
+  --color-primary: #0EA5E9;
+  --color-primary-hover: #0284C7;
+  --color-primary-light: #E0F2FE;
+  --color-primary-dark: #0369A1;
+
+  --color-cta: #F97316;
+  --color-cta-hover: #EA580C;
+  --color-cta-light: #FFEDD5;
+
+  --color-teal: #0D9488;
+  --color-teal-light: #CCFBF1;
+
+  /* Neutral Backgrounds */
+  --color-bg-white: #FFFFFF;
+  --color-bg-light: #F8FAFC;
+  --color-bg-alt: #F1F5F9;
+  --color-bg-dark: #0F172A;
+
+  /* Text Colors */
+  --color-text-main: #0F172A;
+  --color-text-muted: #475569;
+  --color-text-light: #64748B;
+  --color-text-white: #FFFFFF;
+
+  /* Border & Dividers */
+  --color-border: #E2E8F0;
+  --color-border-hover: #CBD5E1;
+
+  /* Status Colors */
+  --color-success: #10B981;
+  --color-success-bg: #D1FAE5;
+  --color-error: #EF4444;
+  --color-error-bg: #FEE2E2;
+
+  /* Typography */
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -4px rgba(15, 23, 42, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  --shadow-glow: 0 10px 30px rgba(14, 165, 233, 0.25);
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout Widths */
+  --container-max-width: 1240px;
+  --header-height: 80px;
+  --topbar-height: 42px;
+}

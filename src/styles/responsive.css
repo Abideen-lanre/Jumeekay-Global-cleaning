@@ -1,0 +1,77 @@
+/* Responsive Design Rules */
+
+/* Tablet Breakpoint (< 1024px) */
+@media (max-width: 1024px) {
+  .nav-links-desktop {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .footer-col-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Mobile Breakpoint (< 768px) */
+@media (max-width: 768px) {
+  .topbar {
+    display: none; /* Hide topbar on mobile to save space */
+  }
+
+  .site-header {
+    height: 70px;
+  }
+
+  .navbar {
+    height: 70px;
+  }
+
+  .logo-title {
+    font-size: 1.05rem;
+  }
+
+  .logo-icon-wrapper {
+    width: 38px;
+    height: 38px;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .form-container {
+    padding: 1.5rem;
+  }
+
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .sticky-mobile-cta {
+    display: block; /* Show bottom sticky bar on mobile */
+  }
+
+  body {
+    padding-bottom: 70px; /* Offset for sticky mobile bar */
+  }
+
+  .floating-whatsapp {
+    bottom: 5.5rem; /* Elevate above sticky mobile bar */
+    right: 1.25rem;
+    width: 52px;
+    height: 52px;
+  }
+}

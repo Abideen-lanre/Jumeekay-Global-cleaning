@@ -1,0 +1,12 @@
+/* Testimonials Page Styles */
+.testimonials-grid-all {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .testimonials-grid-all {
+    grid-template-columns: 1fr;
+  }
+}
