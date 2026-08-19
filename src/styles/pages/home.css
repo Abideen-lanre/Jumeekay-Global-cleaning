@@ -457,4 +457,13 @@
   .areas-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Keep the floating badge inside the viewport on narrow screens */
+  .hero-experience-badge {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: -1rem;
+    padding: 1rem 1.25rem;
+    justify-content: center;
+  }
 }

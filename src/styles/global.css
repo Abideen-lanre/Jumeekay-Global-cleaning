@@ -9,6 +9,10 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  /* Keep in-page anchor targets clear of the sticky header */
+  scroll-padding-top: calc(var(--header-height) + 1rem);
+  /* Avoid a layout jump when scroll is locked behind the mobile drawer */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -16,9 +20,20 @@ body {
   color: var(--color-text-main);
   background-color: var(--color-bg-white);
   line-height: 1.6;
-  overflow-x: hidden;
+  /*
+   * clip (not hidden) so body never becomes a scroll container — that would
+   * break position: sticky on the header in some browsers.
+   */
+  overflow-x: hidden; /* fallback for browsers without overflow: clip */
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Freeze the page behind the mobile nav drawer */
+html.nav-drawer-open,
+body.nav-drawer-open {
+  overflow: hidden;
 }
 
 /* Heading Typography */

@@ -17,7 +17,7 @@ const Button = ({
 
   if (to) {
     return (
-      <Link to={to} className={baseClass} {...props}>
+      <Link to={to} className={baseClass} onClick={onClick} {...props}>
         {children}
       </Link>
     );
@@ -25,7 +25,14 @@ const Button = ({
 
   if (href) {
     return (
-      <a href={href} className={baseClass} target="_blank" rel="noopener noreferrer" {...props}>
+      <a
+        href={href}
+        className={baseClass}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={onClick}
+        {...props}
+      >
         {children}
       </a>
     );
