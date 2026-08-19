@@ -7,7 +7,7 @@
   }
 
   .mobile-toggle {
-    display: block;
+    display: inline-flex;
   }
 
   .footer-grid {
@@ -24,10 +24,6 @@
 @media (max-width: 768px) {
   .topbar {
     display: none; /* Hide topbar on mobile to save space */
-  }
-
-  .site-header {
-    height: 70px;
   }
 
   .navbar {
@@ -60,18 +56,62 @@
     grid-template-columns: 1fr;
   }
 
+  /* iOS Safari zooms the whole page when a focused field is under 16px */
+  .form-control {
+    font-size: 1rem;
+  }
+
   .sticky-mobile-cta {
     display: block; /* Show bottom sticky bar on mobile */
   }
 
   body {
-    padding-bottom: 70px; /* Offset for sticky mobile bar */
+    /* Offset for the sticky mobile bar (+ iOS home indicator) */
+    padding-bottom: calc(72px + env(safe-area-inset-bottom));
   }
 
+  /*
+   * The sticky bottom bar already carries a WhatsApp action — the floating
+   * bubble would only duplicate it and cover page content.
+   */
   .floating-whatsapp {
-    bottom: 5.5rem; /* Elevate above sticky mobile bar */
-    right: 1.25rem;
-    width: 52px;
-    height: 52px;
+    display: none;
+  }
+}
+
+/* Small Phones (< 600px) */
+@media (max-width: 600px) {
+  /*
+   * Reclaim header space for the logo — a free-quote CTA is already reachable
+   * from the drawer and the sticky bottom bar.
+   */
+  .header-quote-btn {
+    display: none;
+  }
+
+  .container {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+}
+
+/* Very Small Phones (< 360px) */
+@media (max-width: 360px) {
+  .logo-title {
+    font-size: 0.95rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+  }
+
+  .logo-icon-wrapper {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brand-logo {
+    gap: 0.5rem;
   }
 }

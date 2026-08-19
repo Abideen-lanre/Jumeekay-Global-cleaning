@@ -71,7 +71,7 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
+  transition: box-shadow var(--transition-normal);
 }
 
 .site-header.scrolled {
@@ -82,6 +82,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   height: var(--header-height);
 }
 
@@ -90,11 +91,13 @@
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
+  min-width: 0;
 }
 
 .logo-icon-wrapper {
   width: 44px;
   height: 44px;
+  flex-shrink: 0;
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
   border-radius: var(--radius-md);
   display: flex;
@@ -107,6 +110,7 @@
 .logo-text {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .logo-title {
@@ -116,6 +120,7 @@
   color: var(--color-navy-dark);
   line-height: 1.1;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .logo-subtitle {
@@ -124,6 +129,14 @@
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-primary);
+  white-space: nowrap;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 /* Nav Links Desktop */
@@ -218,26 +231,48 @@
   color: var(--color-primary);
 }
 
+.dropdown-divider {
+  height: 1px;
+  background-color: var(--color-border);
+  margin: 0.4rem 0;
+}
+
 /* Mobile Toggle */
 .mobile-toggle {
   display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -0.5rem;
+  flex-shrink: 0;
   background: none;
   border: none;
+  border-radius: var(--radius-sm);
   color: var(--color-navy-dark);
-  padding: 0.5rem;
+  transition: background-color var(--transition-fast);
 }
 
-/* Mobile Drawer Overlay */
+.mobile-toggle:hover {
+  background-color: var(--color-bg-alt);
+}
+
+/*
+ * Mobile Drawer
+ * Rendered through a portal on <body> (see Navbar.jsx) so that no ancestor with
+ * backdrop-filter / transform / filter can become its containing block and clip it.
+ */
 .mobile-nav-overlay {
   position: fixed;
   inset: 0;
   background-color: rgba(15, 23, 42, 0.6);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 10000;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: all var(--transition-normal);
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
 }
 
 .mobile-nav-overlay.open {
@@ -246,22 +281,31 @@
   pointer-events: auto;
 }
 
+/*
+ * Absolute (not fixed) inside the full-viewport overlay: the overlay's own
+ * backdrop-filter already makes it the containing block, so absolute keeps the
+ * drawer pinned to the real viewport box either way.
+ */
 .mobile-nav-drawer {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
-  width: 85%;
+  width: 86%;
   max-width: 360px;
   background-color: var(--color-bg-white);
-  z-index: 10001;
-  padding: 1.5rem;
+  padding: 1.25rem;
+  padding-top: max(1.25rem, env(safe-area-inset-top));
+  padding-right: max(1.25rem, env(safe-area-inset-right));
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-xl);
   transform: translateX(100%);
   transition: transform var(--transition-normal);
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-nav-overlay.open .mobile-nav-drawer {
@@ -272,51 +316,111 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 0.75rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--color-border);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.mobile-drawer-header .logo-title {
+  font-size: 1.05rem;
+}
+
+.drawer-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -0.5rem;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-alt);
+  color: var(--color-navy-dark);
+  transition: background-color var(--transition-fast);
+}
+
+.drawer-close-btn:hover {
+  background-color: var(--color-border);
 }
 
 .mobile-nav-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 0.15rem;
+  margin-bottom: 1.5rem;
 }
 
-.mobile-nav-link {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: var(--color-navy-dark);
-  display: block;
-}
-
+.mobile-nav-link,
 .mobile-dropdown-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-sm);
   font-family: var(--font-heading);
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--color-navy-dark);
+  text-align: left;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.mobile-dropdown-chevron {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.mobile-dropdown-chevron.open {
+  transform: rotate(180deg);
 }
 
 .mobile-dropdown-list {
-  padding-left: 1rem;
-  margin-top: 0.5rem;
+  padding-left: 0.65rem;
+  margin: 0.25rem 0 0.5rem;
+  border-left: 2px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.1rem;
 }
 
 .mobile-sublink {
-  font-size: 0.95rem;
-  color: var(--color-text-muted);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.35rem 0;
+  min-height: 44px;
+  padding: 0.4rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.mobile-sublink:hover,
+.mobile-sublink.active {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.mobile-sublink.all-services {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.mobile-drawer-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 
@@ -454,7 +558,8 @@
   z-index: 95;
   background-color: var(--color-bg-white);
   box-shadow: 0 -4px 15px rgba(15, 23, 42, 0.1);
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 1rem;
+  padding-bottom: calc(0.6rem + env(safe-area-inset-bottom));
   border-top: 1px solid var(--color-border);
 }
 
@@ -470,10 +575,12 @@
   align-items: center;
   justify-content: center;
   gap: 0.2rem;
-  padding: 0.5rem;
+  min-height: 52px;
+  padding: 0.5rem 0.25rem;
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 700;
+  line-height: 1.2;
   text-align: center;
 }
 
